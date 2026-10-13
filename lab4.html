@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab 4 - Intro to JavaScript</title>
+</head>
+<body>
+
+    <h1>Welcome to My Online Store</h1>
+    <p>Place your order below!</p>
+    <script>
+        let customerName = prompt("What is a good name for this order?");
+        let item = prompt("What item would you like to order?");
+        let quantity = prompt("How many " + item + "'s would you like to order?");
+
+        let hour = new Date().getHours();
+        let greeting;
+
+        if (hour < 12) {
+            greeting = "Good morning";
+        } else if (hour < 18) {
+            greeting = "Good afternoon";
+        } else {
+            greeting = "Good evening";
+        }
+        
+        let deliveryDate = new Date();
+
+        deliveryDate.setDate(deliveryDate.getDate() + 7);
+
+        let arrivalDate = deliveryDate.toDateString();
+
+        document.write("<h2>" + greeting + ", " + customerName + "!</h2>");
+        document.write("<p>You ordered: " + item + "</p>");
+        document.write("<p>Quantity: " + quantity + "</p>");
+        document.write("<p>Expected delivery date: " + arrivalDate + "</p>");
+    </script>
+
+</body>
+</html>
