@@ -8,14 +8,12 @@
 
 <body>
     <h1>Cat Facts</h1>
-    <p>Click the button to load cat facts and a new picture.</p>
+    <p>Click to load cat facts</p>
 
     <img id="catPicture" src="cat.jpg" alt="A cat" width="300">
 
     <br><br>
-
     <button onclick="loadCatFacts()">Load Cat Facts</button>
-
     <br><br>
 
     <table border="1">
@@ -26,8 +24,7 @@
             </tr>
         </thead>
 
-        <tbody id="factsTable">
-        </tbody>
+        <tbody id="factsTable"> </tbody>
     </table>
 
     <script>
@@ -35,10 +32,12 @@
         fetch("https://brianobruno.github.io/cats.json", {
             method: "GET"
         })
-        .then(function(response) {
+        .then(function(response)
+        {
             return response.json();
         })
-        .then(function(data) {
+        .then(function(data)
+        {
             data.facts.sort(function(a, b)
             {
                 return a.factId - b.factId;
@@ -57,9 +56,10 @@
             factCell.textContent = fact.text;
         });
 
-document.getElementById("catPicture").src = data.catPhoto;
+        document.getElementById("catPicture").src = data.catPhoto;
         })
-        .catch(function(error) {
+        .catch(function(error)
+        {
             console.log("Could not load cat facts:", error);
         });
     }
