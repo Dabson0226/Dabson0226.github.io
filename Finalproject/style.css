@@ -1,0 +1,37 @@
+/* GTL001 - custom font */
+@font-face
+{
+    font-family: "GTL001";
+    src: url("fonts/GTL001.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body
+{
+    background-color: #3A2152;
+    color: #C33C54;
+    font-family: "GTL001", sans-serif;
+    margin: 0;
+    padding: 32px;
+    font-size: 16px;
+}
+
+#mission-title
+{
+    font-family: "GTL001", sans-serif;
+    font-weight: normal;
+    font-size: clamp(32px, 5vw, 64px);
+}
+
+button,
+input,
+select,
+textarea
+{
+    font-family: inherit;
+}
+
+
+
