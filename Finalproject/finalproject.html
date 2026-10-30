@@ -8,25 +8,59 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Custom styles - colors and fonts -->
     <link rel="stylesheet" href="style.css">
-    <!-- Anime.js - text animation library -->
-    <script src="https://cdn.jsdelivr.net/npm/animejs@4/dist/bundles/anime.umd.min.js" defer></script>
-    <!-- Custom JavaScript - title animation -->
+    <!-- Custom JavaScript - NASA gallery and mission selection -->
     <script src="script.js" defer></script>
 </head>
 <body>
-    <main class="container text-center">
+    <main class="container">
+        <header class="text-center">
+            <h1 id="mission-title">Space Study Mission</h1>
+            <p>Choose a destination and focus on your next study mission.</p>
+        </header>
 
-        <div class="row">
-            <div class="col-xs-12 col-md-6 col-md-offset-3">
-        <h1 id="mission-title">Space Study Mission</h1>
-        <p>Choose a destination and focus on your next study mission.</p>
-
-        <!-- Next step: add your destination dropdown and study duration here. -->
+        <!-- Destination filters -->
+        <section aria-labelledby="destinations-heading">
+            <h2 id="destinations-heading">Choose your destination</h2>
+            <p>Explore eight planets and select your next study destination.</p>
+            <div class="row">
+                <div class="col-sm-8 form-group">
+                    <label for="planet-search">Search planets</label>
+                    <input id="planet-search" type="search" class="form-control" placeholder=" Earth, Mars, etc.">
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label for="planet-type">Planet type</label>
+                    <select id="planet-type" class="form-control">
+                        <option value="all">All planets</option>
+                        <option value="Rocky planet">Rocky planets</option>
+                        <option value="Gas giant">Gas giants</option>
+                        <option value="Ice giant">Ice giants</option>
+                    </select>
+                </div>
             </div>
-        </div>
+
+            <!-- NASA - images and descriptions in two columns -->
+            <p id="gallery-status" role="status">Loading NASA images and descriptions...</p>
+            <button id="retry-gallery" type="button" class="btn btn-default" hidden>Retry NASA requests</button>
+            <p id="gallery-help" class="gallery-help">Click a planet to select it, or use Tab and Enter on your keyboard.</p>
+            <div id="destination-gallery" class="row destination-gallery" role="group" aria-label="Planet destinations" aria-describedby="gallery-help"></div>
+        </section>
+
+        <!-- Mission setup -->
+        <section class="mission-setup" aria-labelledby="setup-heading">
+            <h2 id="setup-heading">Prepare your mission</h2>
+            <p id="selected-destination" role="status">Select a planet above to begin.</p>
+            <p id="asset-status" role="status"></p>
+            <a id="nasa-image-link" target="_blank" rel="noopener noreferrer" hidden>View selected NASA image (opens a new tab)</a>
+            <form id="mission-form">
+                <div class="form-group">
+                    <label for="duration">Study time in minutes</label>
+                    <input type="number" id="duration" class="form-control" min="1" max="180" value="25" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Confirm mission</button>
+                <p id="mission-status" role="status"></p>
+            </form>
+        </section>
     </main>
 </body>
 </html>
-
-
 
