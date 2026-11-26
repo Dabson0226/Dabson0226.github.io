@@ -63,19 +63,22 @@ async function loadPlanet(planet)
 {
     try //trys and recieves the data from the NASA API
     {
-        const url = 'https://images-api.nasa.gov/search?nasa_id=' + encodeURIComponent(planet.nasaId) + '&media_type=image'; //creates the url for the NASA API request using the planet's nasaId and specifying that we want images
+         //creates the url for the NASA API request using the planet's nasaId and specifying that we want images
+        const url = 'https://images-api.nasa.gov/search?nasa_id=' + encodeURIComponent(planet.nasaId) + '&media_type=image';
         const result = await getNasaData(url); //waits for the response
         const item = result.collection.items.find(item => item.data && item.data[0].nasa_id === planet.nasaId); //finds the item in the response that matches the planet's nasaId
         if (!item) throw new Error('NASA media was not found.'); //if the item is not found, throw an error(send to catch block)
 
         const details = item.data[0]; //gets the first item in the data array of the item object
-        const preview = (item.links || []).find(link => link.rel === 'preview' && isImageUrl(link.href)); //finds the first valid image link labeled preview, or searches an empty list if there are no links
+         //finds the first valid image link labeled preview, or searches an empty list if there are no links
+        const preview = (item.links || []).find(link => link.rel === 'preview' && isImageUrl(link.href));
         if (!preview) throw new Error('NASA image is unavailable.'); //if the item is not found, throw an error(send to catch block)
 
         planet.mediaTitle = details.title; //sets the title that nasa sent to the planet object
         const description = plainDescription(details.description); //cleans the NASA description and stores it in this local description variable
 
-        planet.card.querySelector('.planet-description').textContent = description.length > 190 ? description.slice(0, 187) + '...' : description || 'Explore NASA imagery of ' + planet.name + '.'; // Captions longer than 190 characters are shortened to 187 characters plus three dots.
+        // Captions longer than 190 characters are shortened to 187 characters plus three dots.
+        planet.card.querySelector('.planet-description').textContent = description.length > 190 ? description.slice(0, 187) + '...' : description || 'Explore NASA imagery of ' + planet.name + '.'; 
         
         const picture = planet.card.querySelector('.planet-picture'); //gets the picture element of the planet card
         const image = document.createElement('img'); //creates an image element to hold the NASA image
@@ -94,7 +97,8 @@ async function loadPlanet(planet)
     {
         planet.loaded = false; //tells the program that the planet has not been loaded successfully
         planet.card.querySelector('.image-fallback').textContent = 'NASA image unavailable'; //sets the text of the image-fallback element to 'NASA image unavailable'
-        planet.card.querySelector('.planet-description').textContent = 'The NASA request failed. Retry to load this destination’s image and description.'; //sets the text of the planet-description element to 'The NASA request failed. Retry to load this destination’s image and description.'
+        //sets the text of the planet-description element to 'The NASA request failed. Retry to load this destination’s image and description.'
+        planet.card.querySelector('.planet-description').textContent = 'The NASA request failed. Retry to load this destination’s image and description.'; 
         console.error(planet.name, error); //logs the error to the console with the planet's name
     }
 }
