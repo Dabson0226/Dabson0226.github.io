@@ -4,7 +4,7 @@
     src: url("fonts/DepartureMono-Regular.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: swap; /* Show the fallback font while the Departure Mono font file downloads. */
 }
 /* Page colors and text */
 body {
@@ -14,16 +14,18 @@ body {
     margin: 0;
     padding: 32px 16px;
     font-size: 16px;
-    letter-spacing: 2px;
-    word-spacing: 2px;
+    letter-spacing: 2px; /* Increase this value for more space between letters. */
+    word-spacing: 2px; /* Add space between words. Letter spacing above controls the space between letters. */
 }
 
+/* Let the Home title grow with the screen, within a minimum and maximum size. */
 #mission-title {
     font-family: inherit;
     font-weight: normal;
-    font-size: clamp(32px, 5vw, 64px);
+    font-size: clamp(32px, 5vw, 64px); /* Title size scales with screen width, from 32px to 64px. */
 }
 
+/* Use the page font for form controls as well as ordinary text. */
 button, input, select, textarea {
     font-family: inherit;
 }
@@ -31,11 +33,12 @@ button, input, select, textarea {
 /* Bootstrap - keep the gallery within the page on small screens */
 main.container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1200px; /* Keep the page from getting wider than 1200px on large screens. */
 }
 
+/* Leave space below the Home title before the destination section starts. */
 header {
-    margin-bottom: 40px;
+    margin-bottom: 128px; /* This is the gap you increased between the Home title area and the destination section. */
 }
 
 /* Bootstrap - a row of col-xs-6 wrappers makes two columns. */
@@ -44,6 +47,7 @@ header {
     padding-bottom: 2px;
 }
 
+/* Separate the gallery rows with space below each column. */
 .planet-column {
     margin-bottom: 20px;
 }
@@ -53,6 +57,8 @@ header {
     clear: both;
 }
 
+/* Arrange each card’s image and text vertically and style the card as a button. */
+/* These rules set the card layout, background, outline, and rounded corners. */
 .destination-card {
     display: flex;
     flex-direction: column;
@@ -69,20 +75,24 @@ header {
     cursor: pointer;
 }
 
+/* Highlight a card when the pointer is over it. */
 .destination-card:hover {
     border-color: #e48299;
 }
 
+/* Mark the selected destination with a pink border. */
 .destination-card[aria-pressed="true"] {
     border-color: #ff9ab1;
     box-shadow: 0 0 0 2px #C33C54;
 }
 
+/* Outline the card when navigating with the keyboard. */
 .destination-card:focus-visible {
     outline: 3px solid #ffe2eb;
     outline-offset: 3px;
 }
 
+/* Reserve the same image area on every card. */
 .planet-picture {
     height: 160px;
     display: flex;
@@ -91,18 +101,21 @@ header {
     background: #180f25;
 }
 
+/* Fit the entire NASA image in the card without cropping it. */
 .planet-picture img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
+/* Center and style the message shown when a planet image fails to load. */
 .image-fallback {
     padding: 12px;
     text-align: center;
     color: #e7c9df;
 }
 
+/* Space the card text and keep the selection label near the bottom. */
 .planet-copy {
     display: flex;
     flex: 1;
@@ -111,16 +124,20 @@ header {
     padding: 18px;
 }
 
+/* Make the planet name larger and pink so it stands out from the description. */
 .planet-name {
     font-size: 25px;
     color: #ff9ab1;
 }
 
+/* Use smaller, lighter text for the card details. */
 .planet-type, .planet-credit, .planet-choice {
     font-size: 13px;
     color: #e7c9df;
 }
 
+/* Wrap long captions and show up to four lines. */
+/* These rules give descriptions room but hide text after four lines. */
 .planet-description {
     min-height: 5.4em;
     line-height: 1.4;
@@ -131,41 +148,49 @@ header {
     overflow: hidden;
 }
 
+/* Push the selection label to the bottom of the card text area and make it pink. */
 .planet-choice {
     margin-top: auto;
     color: #ffb3c3;
 }
 
+/* Use smaller light-colored text for the gallery and duration instructions. */
 .gallery-help {
     font-size: 14px;
     color: #e7c9df;
 }
 
 /* Mission controls */
+/* Keep the mission form centered and cap its width at 620 pixels. */
 .mission-setup {
     max-width: 620px;
     margin: 32px auto 0;
 }
 
+/* Add space above the study-duration form. */
 #mission-form {
     margin-top: 22px;
 }
 
+/* Add space above any validation message below Launch Mission. */
 #mission-status {
     margin-top: 16px;
 }
 
+/* Apply the pink theme to the main action buttons. */
 .btn-primary {
     background-color: #C33C54;
     border-color: #C33C54;
     color: #fff;
 }
 
+/* Darken the main action buttons on hover or keyboard focus. */
 .btn-primary:hover, .btn-primary:focus {
     background-color: #a92e45;
     border-color: #a92e45;
 }
 
+/* Make the link to the full NASA image light pink and underlined. */
 #nasa-image-link {
     color: #ffd1df;
     text-decoration: underline;
@@ -176,7 +201,67 @@ header {
     display: none !important;
 }
 
+/* Shared Bootstrap navigation - Home and Study Mission */
+.site-nav {
+    background-color: #29173c;
+    border-color: #805877;
+    margin-bottom: 32px;
+}
+
+/* Set the color of the site name and navigation links. */
+.site-nav .navbar-brand,
+.site-nav .navbar-nav > li > a {
+    color: #f5e9f1;
+}
+
+/* Change the navigation background and text when a link is hovered or focused. */
+.site-nav .navbar-brand:hover,
+.site-nav .navbar-brand:focus,
+.site-nav .navbar-nav > li > a:hover,
+.site-nav .navbar-nav > li > a:focus {
+    background-color: #482b60;
+    color: #fff;
+}
+
+/* Highlight the current page link in pink. */
+.site-nav .navbar-nav > .active > a,
+.site-nav .navbar-nav > .active > a:hover,
+.site-nav .navbar-nav > .active > a:focus {
+    background-color: #C33C54;
+    color: #fff;
+}
+
+/* Page two - selected mission overview */
+/* Center the mission panel and give it padding, a purple background, and rounded corners. */
+.mission-overview {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px;
+    border: 1px solid #805877;
+    border-radius: 12px;
+    background-color: #29173c;
+    color: #f5e9f1;
+    overflow-wrap: anywhere;
+}
+
+/* Color the destination name in the timer panel pink. */
+.mission-overview h2 {
+    color: #ff9ab1;
+}
+
+/* Let button labels wrap inside the panel on narrow screens. */
+.mission-overview .btn {
+    max-width: 100%;
+    white-space: normal;
+}
+
+/* Set the lighter text color for the labels above the clocks. */
+.mission-label {
+    color: #e7c9df;
+}
+
 /* Keep both columns readable on small screens. */
+/* Only apply the rules below when the screen is 600px wide or narrower. */
 @media (max-width: 600px) {
     .planet-column {
         padding-left: 6px;
@@ -194,3 +279,94 @@ header {
 }
 
 
+/* Study Mission countdown */
+/* Make the current focus or break clock the largest text in the panel. */
+.mission-countdown {
+    font-size: clamp(32px, 7vw, 60px); /* Change 60px to adjust the largest size of the main timer. */
+    color: #ff9ab1;
+    font-variant-numeric: tabular-nums; /* Use equal-width number characters so the countdown does not shift as digits change. */
+}
+
+/* Center the timer buttons and wrap them on narrow screens. */
+.mission-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Mission scene */
+/* Cover the mission page with the starfield and use black behind it. */
+.mission-page {
+    min-height: 100vh; /* Make the space background cover at least the full browser window height. */
+    background-color: #000;
+    background-image: url("images/mission-starfield.png");
+    background-position: center;
+    background-size: cover; /* Fill the screen with the background image, cropping its edges if needed. */
+    background-repeat: no-repeat;
+    color: #f5e9f1;
+}
+
+/* Keep the ship on the left and the destination on the right. */
+.mission-scene {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Push the shuttle and planet toward opposite sides of the scene. */
+    gap: 12px;
+    min-height: clamp(190px, 36vw, 425px); /* A taller scene leaves more space between the navigation and timer panel. */
+    padding: 0 clamp(6px, 2vw, 28px);
+}
+
+/* Rotate the shuttle to face the destination. */
+/* Set the shuttle’s responsive size, with a maximum width of 155 pixels. */
+.mission-ship {
+    display: grid;
+    place-items: center;
+    width: clamp(62px, 14vw, 155px); /* The shuttle container grows with the screen up to 155px wide. */
+    aspect-ratio: 3 / 2;
+    flex-shrink: 0;
+}
+
+/* Rotate the shuttle image to face right. */
+.mission-ship img {
+    width: 66%; /* Raise this percentage to make the shuttle image bigger inside its container. */
+    transform: rotate(90deg);
+}
+
+/* Set the maximum space available for the planet at arrival. */
+.mission-window {
+    display: grid;
+    place-items: center end;
+    width: min(54%, 460px); /* Give the planet up to 54% of the scene width, with a maximum of 460px. */
+    height: clamp(150px, 35vw, 390px); /* Increase the planet viewport width or height to give the photo more room at arrival. */
+}
+
+/* Fit the NASA photo and anchor its growth to the right edge. */
+.mission-window img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: contain;
+    object-position: right center;
+    transform-origin: right center; /* Keep the right side anchored so the planet grows left toward the shuttle. */
+}
+
+/* Keep the image loading or error message on the planet side. */
+.mission-window p {
+    margin: 0;
+    font-size: 13px;
+    text-align: right;
+}
+
+/* Set the destination name size and the space beneath it in the timer panel. */
+.mission-panel h2 {
+    margin: 0 0 8px;
+    font-size: 22px;
+}
+
+/* Place the smaller NASA credit below the timer controls. */
+.mission-image-credit {
+    margin: 14px 0 0;
+    font-size: 12px;
+    color: #e7c9df;
+}

@@ -1,33 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>  <!-- modern style html5 -->
+<html lang="en"> <!-- Set the language of the webpage -->
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space Study Mission</title>
+    <meta charset="UTF-8"> <!-- UTF-8 encoding for proper character display -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Maps the viewport to the device's width and height -->
+    <title>Space Study Mission</title> <!-- Title of the webpage (not visible on the page) -->
+
     <!-- Bootstrap - responsive layout -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     <!-- Custom styles - colors and fonts -->
     <link rel="stylesheet" href="style.css">
+
     <!-- Custom JavaScript - NASA gallery and mission selection -->
+    <script src="nasa.js" defer></script>
     <script src="script.js" defer></script>
 </head>
+
 <body>
     <main class="container">
+        <!-- Bootstrap - links between the two pages -->
+        <nav class="navbar navbar-default site-nav" aria-label="Main navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="finalproject.html">Space Study</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="finalproject.html" aria-current="page">Home</a></li>
+                    <li><a href="mission.html">Study Mission</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Page title and description -->
         <header class="text-center">
             <h1 id="mission-title">Space Study Mission</h1>
-            <p>Choose a destination and focus on your next study mission.</p>
+            <p>Choose a destination and focus on your next study mission</p>
         </header>
 
         <!-- Destination filters -->
         <section aria-labelledby="destinations-heading">
             <h2 id="destinations-heading">Choose your destination</h2>
-            <p>Explore eight planets and select your next study destination.</p>
             <div class="row">
-                <div class="col-sm-8 form-group">
+                <div class="col-sm-8 form-group"> <!--  Bootstrap column for search on small screens -->
                     <label for="planet-search">Search planets</label>
                     <input id="planet-search" type="search" class="form-control" placeholder=" Earth, Mars, etc.">
                 </div>
-                <div class="col-sm-4 form-group">
+
+                <div class="col-sm-4 form-group"> <!-- Bootstrap column for planet type filter on small screens -->
                     <label for="planet-type">Planet type</label>
                     <select id="planet-type" class="form-control">
                         <option value="all">All planets</option>
@@ -39,28 +59,33 @@
             </div>
 
             <!-- NASA - images and descriptions in two columns -->
+            <!-- Report NASA loading status and the number of matching destinations. -->
             <p id="gallery-status" role="status">Loading NASA images and descriptions...</p>
             <button id="retry-gallery" type="button" class="btn btn-default" hidden>Retry NASA requests</button>
             <p id="gallery-help" class="gallery-help">Click a planet to select it, or use Tab and Enter on your keyboard.</p>
+            <!-- JavaScript adds the planet cards inside this Bootstrap row. -->
             <div id="destination-gallery" class="row destination-gallery" role="group" aria-label="Planet destinations" aria-describedby="gallery-help"></div>
         </section>
 
         <!-- Mission setup -->
         <section class="mission-setup" aria-labelledby="setup-heading">
             <h2 id="setup-heading">Prepare your mission</h2>
-            <p id="selected-destination" role="status">Select a planet above to begin.</p>
-            <p id="asset-status" role="status"></p>
-            <a id="nasa-image-link" target="_blank" rel="noopener noreferrer" hidden>View selected NASA image (opens a new tab)</a>
+            <p id="asset-status" role="status"></p> <!-- Check the status of the selected asset -->
+            <a id="nasa-image-link" target="_blank" rel="noopener noreferrer" hidden>View selected NASA image (opens a new tab)</a> <!-- Link to the selected NASA image -->
+
+            <!-- Collect the total focus minutes before opening the mission page. -->
             <form id="mission-form">
                 <div class="form-group">
-                    <label for="duration">Study time in minutes</label>
-                    <input type="number" id="duration" class="form-control" min="1" max="180" value="25" required>
+                    <label for="duration">Total focus time in minutes (31 to 180)</label>
+                    <!-- min and max set the allowed minutes. value sets the starting choice. -->
+                    <input type="number" id="duration" class="form-control" min="31" max="180" value="31" required aria-describedby="duration-help">
+                    <p id="duration-help" class="gallery-help">Work for 25 minutes at a time, the a 5 minute break between sessions(Pomodoro Technique)</p>
                 </div>
-                <button type="submit" class="btn btn-primary">Confirm mission</button>
+
+                <button type="submit" class="btn btn-primary">Blast Off!</button>
                 <p id="mission-status" role="status"></p>
             </form>
         </section>
     </main>
 </body>
 </html>
-

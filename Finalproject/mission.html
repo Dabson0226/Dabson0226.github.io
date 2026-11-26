@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"> <!-- UTF-8 encoding for proper character display -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Maps the viewport to the device's width and height -->
+    <title>Study Mission | Space Study Mission</title> <!-- Title of the webpage (not visible on the page) -->
+
+    <!-- Bootstrap - responsive layout -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom styles - shared colors and Departure Mono font -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Mission JavaScript - read the mission and run the countdown -->
+    <script src="nasa.js" defer></script>
+    <script src="mission.js" defer></script>
+</head>
+
+<body class="mission-page">
+    <main class="container">
+        <!-- Bootstrap - links between the two pages -->
+        <nav class="navbar navbar-default site-nav" aria-label="Main navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="finalproject.html">Space Study</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="finalproject.html">Home</a></li>
+                    <li class="active"><a id="mission-nav-link" href="mission.html" aria-current="page">Study Mission</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Users skipping steps -->
+        <section id="no-mission" class="mission-overview text-center" aria-labelledby="no-mission-heading">
+            <h2 id="no-mission-heading">Choose a destination first</h2>
+            <p>Visit Home, select a planet, and set your study time to prepare a mission</p>
+            <a class="btn btn-primary" href="finalproject.html">Choose a destination</a>
+        </section>
+
+        <!-- Users following steps -->
+        <section id="mission-details" aria-labelledby="destination-name" hidden>
+            <!-- Place the shuttle and the NASA planet above the timer panel. -->
+            <div class="mission-scene">
+                <div class="mission-ship">
+                    <img src="images/spaceship.png" alt="Space shuttle facing the destination">
+                </div>
+
+                <div class="mission-window">
+                    <p id="planet-image-status" role="status">Loading NASA image...</p>
+                    <img id="mission-planet-image" alt="" hidden>
+                </div>
+            </div>
+
+            <!-- Show the current block, remaining focus time, and timer controls. -->
+            <div class="mission-overview mission-panel text-center">
+                <h2 id="destination-name"></h2>
+
+                <!-- The first clock shows the current focus or break block. -->
+                <p id="timer-phase" class="mission-label">Focus</p>
+                <p id="mission-countdown" class="mission-countdown" role="timer" aria-label="Time remaining"></p>
+
+                <!-- The second clock shows all focus time left, including future blocks. -->
+                <p class="mission-label">Focus remaining</p>
+
+                <!-- mission.js fills this second clock with the total focus time left. -->
+                <p id="total-countdown" role="timer" aria-label="Total focus time remaining"></p>
+
+                <!-- Announce timer status changes without reading every countdown tick. -->
+                <p id="timer-status" role="status">Ready to start.</p>
+
+                <!-- Mission controls - start once or change mission -->
+                <div class="mission-controls">
+                    <button id="timer-start" type="button" class="btn btn-primary">Start</button>
+                    <a class="btn btn-default" href="finalproject.html">Change mission</a>
+                </div>
+
+                <!-- Image credit for the NASA planet image -->
+                <p id="planet-image-credit" class="mission-image-credit" hidden>Image from the NASA Image and Video Library</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
