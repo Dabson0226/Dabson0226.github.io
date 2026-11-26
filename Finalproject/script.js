@@ -1,4 +1,5 @@
-const gallery = document.getElementById('destination-gallery'); // Initial setup - find the Home page elements that this script reads and updates.
+// Initial setup - find the Home page elements that this script reads and updates
+const gallery = document.getElementById('destination-gallery');
 const searchInput = document.getElementById('planet-search');
 const typeInput = document.getElementById('planet-type');
 const galleryStatus = document.getElementById('gallery-status');
@@ -15,8 +16,10 @@ let galleryLoading = false; //to not load the gallery more than once at a time
 // NASA descriptions sometimes include HTML. Display them as plain text
 function plainDescription(description)
 {
-    const documentCopy = new DOMParser().parseFromString(description || '', 'text/html'); //treats the description as HTML and parses it into a document object
-    return documentCopy.body.textContent.replace(/\s+/g, ' ').trim(); //takes the text of the html doctument and replaces whitespace with a single space and trims it and makes it nice
+    //treats the description as HTML and parses it into a document object
+    const documentCopy = new DOMParser().parseFromString(description || '', 'text/html');
+     //takes the text of the html doctument and replaces whitespace with a single space and trims it and makes it nice
+    return documentCopy.body.textContent.replace(/\s+/g, ' ').trim();
 }
 
 // Destination cards - use real buttons for mouse, touch, and keyboard selection.
@@ -24,7 +27,9 @@ function createPlanetCard(planet)
 {
     const column = document.createElement('div'); // Bootstrap - each planet uses six of the twelve columns.
     column.className = 'col-xs-6 planet-column';
-    if (planets.indexOf(planet) % 2 === 0) column.classList.add('planet-row-start'); // Start a new row for positions 0, 2, 4, and 6 so the cards stay in pairs.
+
+    // Start a new row for positions 0, 2, 4, and 6 so the cards stay in pairs
+    if (planets.indexOf(planet) % 2 === 0) column.classList.add('planet-row-start'); 
 
     const card = document.createElement('button'); //creates the button for the planet card
     card.type = 'button'; //sets the type of the button to button so it doesn't submit a form

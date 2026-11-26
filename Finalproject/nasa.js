@@ -31,11 +31,11 @@ async function getNasaData(url) {
 
 // Only accept image files hosted by NASA before using their URLs on the page.
 function isImageUrl(url) {
-    return typeof url === 'string' && /^https?:\/\/images-assets\.nasa\.gov\//i.test(url) && /\.(jpg|jpeg|png|webp)(\?|$)/i.test(url); // Check for text, an HTTP or HTTPS NASA asset address, and a JPG, JPEG, PNG, or WebP image extension.
+    return typeof url === 'string' && /^https?:\/\/images-assets\.nasa\.gov\//i.test(url) && /\.(jpg|jpeg|png|webp)(\?|$)/i.test(url);
+    // Check for text, an HTTP or HTTPS NASA asset address, and a JPG, JPEG, PNG, or WebP image extension.
 }
 
 // Some NASA asset responses use HTTP; use HTTPS on our published site.
 function secureImageUrl(url) {
     return url.replace(/^http:/i, 'https:'); // Change an HTTP prefix to HTTPS. An address already using HTTPS stays the same.
 }
-
